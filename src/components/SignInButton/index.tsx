@@ -6,8 +6,6 @@ import { signIn, signOut, useSession } from "next-auth/react";
 const SignInButton = () => {
   const { data: session } = useSession();
 
-  console.log(session);
-
   return session ? (
     <button
       className={styles.signInButton}

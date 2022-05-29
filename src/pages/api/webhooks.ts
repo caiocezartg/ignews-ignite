@@ -47,8 +47,9 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         switch (type) {
           case "checkout.session.completed":
             //Tipagem unica para o evento de Checkout Completed
-            const checkoutSession = event.data
-              .object as Stripe.Checkout.Session;
+            const checkoutSession = event.data[
+              "object"
+            ] as Stripe.Checkout.Session;
 
             await saveSubscription(
               checkoutSession.subscription.toString(),
@@ -57,10 +58,12 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
             break;
 
           default:
-            throw new Error("Unhandled event.");
+            // throw new Error("Unhandled event.");
+            break;
         }
       } catch (error) {
-        return res.json({ error: "Webhook handler failed." });
+        console.log(error);
+        return res.status(400).json({ error: "Webhook handler failed." });
       }
     }
 

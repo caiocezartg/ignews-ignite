@@ -21,7 +21,5 @@ export async function saveSubscription(
     price_id: subscription.items.data[0].price.id,
   };
 
-  await fauna.query(
-    q.Create(q.Collection("subscriptions"), { data: subscriptionData })
-  );
+  await fauna.query(q.Create(q.Collection("subs"), { data: subscriptionData }));
 }

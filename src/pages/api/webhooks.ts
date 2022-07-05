@@ -60,7 +60,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
               false
             );
             break;
-          // NOVO ASSINANTE
+          // NOVA ASSINATURA
           case "checkout.session.completed":
             //Tipagem unica para o evento de Checkout Completed
             const checkoutSession = event.data
